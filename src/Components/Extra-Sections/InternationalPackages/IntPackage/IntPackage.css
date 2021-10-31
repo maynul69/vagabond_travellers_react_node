@@ -1,0 +1,16 @@
+.Intpackage h3 {
+    color: #00a99d
+}
+
+.Intpackage {
+
+    min-height: 500px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px grey;
+
+}
+
+.booking-button {
+    background-color: #00a99d;
+    color: seashell;
+}

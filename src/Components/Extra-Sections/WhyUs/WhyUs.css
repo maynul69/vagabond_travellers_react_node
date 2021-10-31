@@ -1,0 +1,11 @@
+.title {
+    /* margin: auto; */
+    width: 50%;
+    border-bottom: 5px solid #00a99d;
+}
+.card{
+    border-radius: 14px;
+}
+.cards-container{
+    min-height: 500px;
+}
