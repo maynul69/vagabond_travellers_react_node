@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { Button, Card } from "react-bootstrap";
 
 const Booking = ({ order, signlebooking }) => {
-    const { name, duration, price, img, description } = signlebooking;
+  const { name, duration, price, img, description } = signlebooking;
 
-    const [allOrders, setAllOrders] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
 
-    useEffect(() => {
-      fetch(`http://localhost:5000/bookings`)
-        .then((res) => res.json())
-        .then((data) => setAllOrders(data));
-    }, [setAllOrders]);
+  useEffect(() => {
+    fetch(`https://nameless-hollows-80731.herokuapp.com/bookings`)
+      .then((res) => res.json())
+      .then((data) => setAllOrders(data));
+  }, [setAllOrders]);
 
-    const handleCancel=id=>{
-        fetch(`http://localhost:5000/bookings/${id}`,{
-            method:'DELETE'
-        })
+  const handleCancel = (id) => {
+    fetch(`https://nameless-hollows-80731.herokuapp.com/bookings/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          alert("Booking Cancelled Succesfully");
+          const restOrders = allOrders.filter(
+            (singleOrder) => singleOrder._id !== id
+          );
+          setAllOrders(restOrders);
+          //reload the page to see the updated order page, although i have set the dependency
 
-        .then(res=>res.json())
-        .then(data=>{
-            if (data.deletedCount>0) {
-                alert('Booking Cancelled Succesfully');
-                const restOrders = allOrders.filter(singleOrder=>singleOrder._id!==id);
-                setAllOrders(restOrders);
-                //reload the page to see the updated order page, although i have set the dependency
-
-                window.location.reload();
-
-            }
-        })
-    }
+          window.location.reload();
+        }
+      });
+  };
 
   return (
     <div>

@@ -1,7 +1,7 @@
-import React, {useEffect, useState } from 'react';
-import {Button, Card } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { Button, Card } from "react-bootstrap";
 
-const ManageSingleOrder = ({ singleorder}) => {
+const ManageSingleOrder = ({ singleorder }) => {
   console.log(singleorder);
   const { fullName, singlepackage, email, orderStatus, _id } = singleorder;
   const { name, duration, price, img, description } = singlepackage;
@@ -9,7 +9,7 @@ const ManageSingleOrder = ({ singleorder}) => {
   // Fetching orders with state
   const [allOrders, setAllOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/bookings")
+    fetch("https://nameless-hollows-80731.herokuapp.com/bookings")
       .then((res) => res.json())
       .then((data) => setAllOrders(data));
   }, []);
@@ -20,7 +20,7 @@ const ManageSingleOrder = ({ singleorder}) => {
       "Are You sure you want to delete this Booking??"
     );
     if (proceed) {
-      fetch(`http://localhost:5000/bookings/${id}`, {
+      fetch(`https://nameless-hollows-80731.herokuapp.com/bookings/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -39,7 +39,7 @@ const ManageSingleOrder = ({ singleorder}) => {
   // Approve Pending Status
   const handleApprove = (id) => {
     console.log(id);
-    const url = `http://localhost:5000/bookings/${id}`;
+    const url = `https://nameless-hollows-80731.herokuapp.com/bookings/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -73,10 +73,24 @@ const ManageSingleOrder = ({ singleorder}) => {
             <Card.Text>duration: {duration}</Card.Text>
             <Card.Text>{description}</Card.Text>
             <Card.Text>{orderStatus}</Card.Text>
-            <Button variant="primary" onClick={() => handleApprove(_id)}>
+            <Button
+              style={{
+                margin: "5px 0",
+                color: "white",
+                backgroundColor: "#00a99d",
+              }}
+              onClick={() => handleApprove(_id)}
+            >
               Approve Booking
             </Button>
-            <Button variant="primary" onClick={() => handleDelete(_id)}>
+            <Button
+              style={{
+                margin: "5px 0",
+                color: "white",
+                backgroundColor: "#00a99d",
+              }}
+              onClick={() => handleDelete(_id)}
+            >
               Cancel Booking
             </Button>
           </Card.Body>

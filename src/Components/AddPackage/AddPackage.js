@@ -2,18 +2,19 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-
 const AddPackage = () => {
-    const { register, handleSubmit, reset } = useForm();
-    const onSubmit = (data) => {
-      console.log(data);
-      axios.post("http://localhost:5000/packages", data).then((res) => {
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    axios
+      .post("https://nameless-hollows-80731.herokuapp.com/packages", data)
+      .then((res) => {
         if (res.data.insertedId) {
           alert("Package Added successfully");
           reset();
         }
       });
-    };
+  };
   return (
     <div className="add-service my-5">
       <h2>Add A Service</h2>
@@ -23,7 +24,7 @@ const AddPackage = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent:"space-around",
+          justifyContent: "space-around",
           width: "20rem",
           margin: "auto",
         }}
@@ -43,7 +44,10 @@ const AddPackage = () => {
         <textarea {...register("description")} placeholder="description" />
 
         <input {...register("img")} placeholder="img url" />
-        <input style={{ backgroundColor: "#00a99d", color:"white" }} type="submit" />
+        <input
+          style={{ backgroundColor: "#00a99d", color: "white" }}
+          type="submit"
+        />
       </form>
     </div>
   );

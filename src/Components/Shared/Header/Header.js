@@ -8,6 +8,8 @@ const Header = () => {
     return (
       <div>
         <>
+
+        {/* tried to seperate the link/buttons and tried to remove the remove the text decoration with both css and bootstrap . But didn't work  */}
           <Navbar
             sticky="top"
             collapseOnSelect
@@ -27,20 +29,8 @@ const Header = () => {
                 >
                   Home
                 </NavLink>
-                <NavLink
-                  classname="mx-2 text-decoration-none"
-                  to="/features"
-                  style={{ color: "white" }}
-                >
-                  Features
-                </NavLink>
-                <NavLink
-                  classname="mx-2 text-decoration-none"
-                  to="/pricing"
-                  style={{ color: "white" }}
-                >
-                  Pricing
-                </NavLink>
+                
+                
 
                 {user?.email ? (
                   <NavLink
